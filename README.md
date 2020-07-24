@@ -1,2 +1,2 @@
 # E-com
-A scalable module for an ecommerce website with a 
+A scalable module for an ecommerce website
