@@ -3,11 +3,11 @@ import { ApiBaseService } from './baseapi.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService extends ApiBaseService {
+export class CartsService extends ApiBaseService {
  
-  GetProductList() { //yes
+  GetCartList() { //yes
     debugger;
-    const response = this.httpGet(this._serviceURL + 'items/getItems');
+    const response = this.httpGet(this._serviceURL + 'carts/getCartList');
    
     debugger;
     return response;

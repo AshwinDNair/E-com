@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpParams,HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs'
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/observable/throw';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class ApiBaseService {
