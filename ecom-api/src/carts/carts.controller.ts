@@ -8,7 +8,7 @@ export class CartsController {
 
     @Get('getCartList')
     getCartList(): any[] {
-        let userId=1;
+        let userId=2;
         console.log("Carts");
       return this.cartsService.getCartList(userId);
     }

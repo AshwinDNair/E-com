@@ -33,4 +33,31 @@ export class CartsService {
     })
     return null;
   }
+  removeItem(itemid): any {
+    let cartList = fs.readFileSync(path.resolve(__dirname, "../../../ecom-files/cartItems.json"));
+    cartList.filter(cartItem=>{
+      if(cartItem.isActive==true && cartItem.itemId==itemid){
+        cartItem.quantity=cartItem.quantity-1;
+        if(cartItem.quantity==0)
+        cartItem.isActive=false;
+      }
+  })   
+    
+    return null;
+  }
+  addItem(cartItem): any {
+   let flag=0;
+    let cartList = fs.readFileSync(path.resolve(__dirname, "../../../ecom-files/cartItems.json"));
+    cartList.filter(cartItem=>{
+      if(cartItem.isActive==true && cartItem.itemId==cartItem.itemid){
+        cartItem.quantity=cartItem.quantity+1;
+        flag=1;
+      }});
+
+      if(flag==0){
+        cartList.push({"itemId":cartItem.itemId,"itemName":cartItem.itemName,"quantity":cartItem.quantity,"price":cartItem.itemPrice,"isActive":cartItem.isActive})
+      }
+      return null;
+      
+  }
 }

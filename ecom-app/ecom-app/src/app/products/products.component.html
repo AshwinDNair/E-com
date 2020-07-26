@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Products Menu</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>Product Name</th>
+    <th>Product Price</th> 
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let item of productList">
+    <td>{{item.itemName}}</td>
+    <td>{{item.itemPrice}}</td>
+    <td><button class="button button2">Add</button>    </td>
+
+</tr>
+  </table>
+
+</body>
+</html>
