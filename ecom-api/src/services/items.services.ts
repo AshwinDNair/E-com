@@ -11,4 +11,6 @@ export class ItemsService {
     let result = JSON.parse(shoppingList);
     return result;
   }
+
+  
 }

@@ -15,7 +15,7 @@
     <td>{{item.itemName}}</td>
     <td>{{item.price}}</td>
     <td>{{item.quantity}}</td>
-    <td><button class="button button2">Add</button> <button class="button button2">Remove</button>   </td>
+    <td><button class="button button2" (click)="addItemToCart(item)">Add</button> <button class="button button2" (click)="removeItemToCart(item)">Remove</button>   </td>
 
 </tr>
 <tr>

@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Query, Body } from '@nestjs/common';
 import { CartsService } from 'src/services/carts.services';
 
 @Controller('carts')
@@ -13,10 +13,15 @@ export class CartsController {
       return this.cartsService.getCartList(userId);
     }
 
-    @Get('updateCartList')
-    updateCartList(): any[] {
-        let newRecord=[{"itemId":2,"userId":2,"quantity":2,"isActive":true}];
-        console.log("Carts");
-      return this.cartsService.updateCartList(newRecord);
+
+    @Post('removeItemFromCart')
+    removeItemFromCart(@Body()item): any {
+      return this.cartsService.removeItem(item.item);
+    }
+    
+    @Post('addItemToCart')
+    addItemToCart(@Body()item): any {
+      console.log("inside add cart");
+      return this.cartsService.addItem(item.item);
     }
 }

@@ -12,4 +12,18 @@ export class CartsService extends ApiBaseService {
     debugger;
     return response;
   }
+  addItemtoCart(item) { //yes
+    debugger;
+    const response = this.httpPost(this._serviceURL + 'carts/addItemToCart',{item});
+   
+    debugger;
+    return response;
+  }
+  removeItemFromCart(item) { //yes
+    debugger;
+    const response = this.httpPost(this._serviceURL + 'carts/removeItemFromCart',{item});
+   
+    debugger;
+    return response;
+  }
 }

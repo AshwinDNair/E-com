@@ -7,8 +7,9 @@ export class ItemsController {
     constructor(private readonly itemsService: ItemsService) {}
 
   @Get('getItems')
-  getHello(): string {
+  getItemsList(): string {
       console.log("Items");
     return this.itemsService.getItemsList();
   }
+  
 }

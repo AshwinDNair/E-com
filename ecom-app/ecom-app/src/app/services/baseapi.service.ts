@@ -33,7 +33,7 @@ export class ApiBaseService {
     return response;
   }
 
-  protected httpPost(url: string, data: any, showSpinner: boolean = true): any {
+  protected httpPost(url: string, data: any,): any {
     this.buildHeaders();
     const response = this._http.post(url, data, { headers: this._getHeaders });
     return this.buildResult(response);

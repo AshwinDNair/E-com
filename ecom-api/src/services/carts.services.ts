@@ -9,54 +9,69 @@ export class CartsService {
     let cartList = fs.readFileSync(path.resolve(__dirname, "../../../ecom-files/cartItems.json"));
     let shoppingList = fs.readFileSync(path.resolve(__dirname, "../../../ecom-files/ecomItems.json"));
     shoppingList=JSON.parse(shoppingList);
-    console.log(shoppingList);
     cartList=JSON.parse(cartList);
-    console.log(cartList);
     let userCart=[]
     let i=0;
     cartList.filter(cartItem=>{
         if(cartItem.isActive==true){
             i+=1;
-            shoppingList.filter(shoppingItem=>{
-                if(cartItem.userId==userId)
-                userCart.push({"itemId":cartItem.itemId,"itemName":shoppingItem.itemName,"quantity":cartItem.quantity,"price":shoppingItem.itemPrice,"isActive":cartItem.isActive})
-            })
+            userCart.push({"itemId":cartItem.itemId,"itemName":"","quantity":cartItem.quantity,"price":0,"isActive":cartItem.isActive})
         }
-    })   
+    })
+    userCart.filter(cartItem=>{
+   shoppingList.filter(shoppingItem=>{
+      if(shoppingItem.itemId==cartItem.itemId){
+cartItem.itemName=shoppingItem.itemName;
+cartItem.price=shoppingItem.itemPrice          
+      }
+  })   
+    })
     return userCart;
   }
 
-  updateCartList(newRecord): any {
-    fs.truncate(path.resolve(__dirname, "../../../ecom-files/cartItems.json"), 0, function(){
-        console.log('done')
-        fs.writeFile(path.resolve(__dirname, "../../../ecom-files/cartItems.json"), JSON.stringify(newRecord), function(){console.log('done')})
-    })
-    return null;
+  removeItem(cartItem): any {
+    let cartList;
+    cartList = fs.readFileSync(path.resolve(__dirname, "../../../ecom-files/cartItems.json"));
+    cartList=JSON.parse(cartList);
+    for(let i=0;i<cartList.length;i++){    
+       if( cartList[i].itemId==cartItem.itemId){
+        cartList[i].quantity=cartItem.quantity-1;
+       if(cartList[i].quantity==0)
+       cartList.splice(i, 1);    
+         break;
+           }
+     }
+       
+ 
+       fs.truncate(path.resolve(__dirname, "../../../ecom-files/cartItems.json"), 0, function(){
+         fs.writeFile(path.resolve(__dirname, "../../../ecom-files/cartItems.json"), JSON.stringify(cartList), function(){console.log('done')})
+     })
+       return null;
+   
   }
-  removeItem(itemid): any {
-    let cartList = fs.readFileSync(path.resolve(__dirname, "../../../ecom-files/cartItems.json"));
-    cartList.filter(cartItem=>{
-      if(cartItem.isActive==true && cartItem.itemId==itemid){
-        cartItem.quantity=cartItem.quantity-1;
-        if(cartItem.quantity==0)
-        cartItem.isActive=false;
-      }
-  })   
-    
-    return null;
-  }
+
+
   addItem(cartItem): any {
    let flag=0;
-    let cartList = fs.readFileSync(path.resolve(__dirname, "../../../ecom-files/cartItems.json"));
-    cartList.filter(cartItem=>{
-      if(cartItem.isActive==true && cartItem.itemId==cartItem.itemid){
-        cartItem.quantity=cartItem.quantity+1;
-        flag=1;
-      }});
-
+   let cartList;
+   cartList = fs.readFileSync(path.resolve(__dirname, "../../../ecom-files/cartItems.json"));
+   cartList=JSON.parse(cartList);
+    for(let i=0;i<cartList.length;i++){
+      
+      if( cartList[i].itemId==cartItem.itemId){
+     
+      cartList[i].quantity=cartItem.quantity+1;
+            flag=1;
+        break;
+          }
+    }
       if(flag==0){
-        cartList.push({"itemId":cartItem.itemId,"itemName":cartItem.itemName,"quantity":cartItem.quantity,"price":cartItem.itemPrice,"isActive":cartItem.isActive})
+        cartList.push({"itemId":cartItem.itemId,"userId":1,"quantity":1,"isActive":true})
       }
+
+      fs.truncate(path.resolve(__dirname, "../../../ecom-files/cartItems.json"), 0, function(){
+        fs.writeFile(path.resolve(__dirname, "../../../ecom-files/cartItems.json"), JSON.stringify(cartList), function(){console.log('done')})
+    })
       return null;
       
   }

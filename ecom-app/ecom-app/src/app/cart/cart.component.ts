@@ -23,10 +23,24 @@ export class CartComponent implements OnInit {
     })
   }
   getTotalAmount(){
+    this.totalAmount=0;
     this.cartList.filter(item=>{
       this.totalAmount+=item.price*item.quantity;  
     })
-  //  this.totalAmount
+    }
+  removeItemToCart(item){
+    const response_details =  this._cartService.removeItemFromCart(item);
+    response_details.subscribe(result=>{
+      this.getCartList()
+    this.getTotalAmount(); })
   }
- 
+  addItemToCart(item){
+    debugger;
+    const response_details =  this._cartService.addItemtoCart(item);
+    response_details.subscribe(result=>{
+      this.cartList=result;
+      this.getCartList()
+    this.getTotalAmount();
+    })
+  } 
 }

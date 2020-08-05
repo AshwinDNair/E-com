@@ -4,19 +4,31 @@
 
 <h2>Products Menu</h2>
 
-<table style="width:100%">
-  <tr>
-    <th>Product Name</th>
-    <th>Product Price</th> 
-    <th>Actions</th>
-  </tr>
+<table class="table table-striped">
+  <thead>
+    <th scope="col">Product Name</th>
+    <th scope="col">Product Price</th> 
+    <th scope="col">Actions</th>
+  </thead>
+  <tbody>
   <tr *ngFor="let item of productList">
     <td>{{item.itemName}}</td>
     <td>{{item.itemPrice}}</td>
-    <td><button class="button button2">Add</button>    </td>
+    <td><button class="button button2" (click)="addItemToCart(item)">Add</button>    </td>
 
 </tr>
+</tbody>
   </table>
+  <!-- <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
 
+    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div> -->
 </body>
 </html>
