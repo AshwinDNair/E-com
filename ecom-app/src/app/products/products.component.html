@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 class="title">Products</h1>
+  <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" *ngFor="let item of productList">
+      <mat-card class="mat-elevation-z4" >
+        <mat-card-header class="cardHeader">
+          <mat-card-title >{{item.itemName}}</mat-card-title> 
+        </mat-card-header>
+        <img mat-card-image src={{item.itemImage}}>
+        <mat-card-content>
+          <p class="description">
+           Rs. {{item.itemPrice}} /-
+          </p>
+          <p class="description">
+            {{item.Description}}
+          </p>
+          
+        </mat-card-content>
+        <mat-card-actions>
+        <button mat-button class="cartButton" (click)="addItemToCart(item)">    
+            <i class="fa fa-shopping-cart float-right" style="font-size:36px"></i></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</body>
+</html>

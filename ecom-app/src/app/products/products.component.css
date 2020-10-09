@@ -1,0 +1,27 @@
+/* Card CSS */
+
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 200px;
+}
+
+.description {
+  color: grey;
+  font-size: 16px;
+  text-align: right;
+}
+
+.cardHeader{
+  color: grey;
+  font-size: 16px;
+   font-style: bold;
+}
+
+.title{
+  color: grey;
+  font-size: 48px;
+  text-align: center;
+}
